@@ -130,7 +130,7 @@
             <span class="frame1440px-logo">Веловолна</span>
             <div data-thq="thq-navbar-nav" class="frame1440px-desktop-menu">
               <nav class="frame1440px-links">
-                <button class="frame1440px-nav1" onclick="location.href='/responsesite/onas.html'">О нас</button>
+                <button class="frame1440px-nav1" onclick="location.href='/mstrporesponsesite/onas.html'">О нас</button>
                 <!-- <span class="frame1440px-nav1">О нас</span> -->
                 <!-- <span class="frame1440px-nav3">Цены</span> -->
                 <button class="frame1440px-nav3" onclick="location.href='prices.html'">Цены</button>
@@ -160,7 +160,7 @@
                   </div>
                 </div>
                 <nav class="frame1440px-links1">
-                  <button class="frame1440px-nav11" onclick="location.href='/responsesite/onas.html'">О нас</button>
+                  <button class="frame1440px-nav11" onclick="location.href='/mstrporesponsesite/onas.html'">О нас</button>
                   <!-- <span class="frame1440px-nav11">О нас</span> -->
                   <span class="frame1440px-nav21">Особенности</span>
                   <span class="frame1440px-nav31">Цены</span>
@@ -218,6 +218,8 @@
             />
           </div>
         </div>
+        <h2>Мы находимся по адресу: Казань, Поперечно-Азинская, 68</h2>
+        <div id="map" style="width: 600px; height: 400px"></div>
         <div class="frame1440px-footer">
           <footer class="frame1440px-footer1">
             <div class="frame1440px-container21">
@@ -241,5 +243,33 @@
       data-section-id="navbar"
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
     ></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/v3/?apikey=bd76d57d-c710-41d6-b617-dc0c7a874df5&lang=ru_RU"></script>
+    <script>
+      initMap();
+
+      async function initMap() {
+        await ymaps3.ready;
+
+        const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker} = ymaps3;
+
+        const {YMapDefaultMarker} = await ymaps3.import('@yandex/ymaps3-markers@0.0.1');
+
+        const map = new YMap(
+                document.getElementById('map'),
+                {
+                  location: {
+                    center: [49.211113, 55.809201],
+                    zoom: 18
+                  }
+                }
+        );
+
+        map.addChild(new YMapDefaultSchemeLayer());
+
+        // Добавьте слой для маркеров
+        map.addChild(new YMapDefaultFeaturesLayer());
+      }
+    </script>
   </body>
 </html>
